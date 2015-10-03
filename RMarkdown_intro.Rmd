@@ -1,0 +1,165 @@
+---
+title: "RMarkdown Intro"
+author: "Mark Hagemann"
+date: "09/24/2015"
+output: 
+  ioslides_presentation:
+    incremental: true
+---
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(ggplot2)
+#devtools::install_github("UMassAmherst-GRiD/rpvta")
+opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+
+## RMarkdown -- what is it?
+
+- **markdown** is a *markup language* (like html, xml)
+    - Made to easily convert to html
+    - convert to other formats (tex/pdf, docx, others) via **pandoc**
+    - Widely used, e.g. on Github, stackexchange
+
+- **RMarkdown** is an extension of markdown for use with R (and other languages)
+    - *knits* code *chunks* together with markdown
+    - developed with Yihui Xie's `knitr` package 
+    - Maintained, expanded by `RStudio` team
+    
+
+## What I use it for:
+
+- Blog posts
+- Note-taking
+- Lab notebook
+- Writing papers
+- and...
+
+## Making presentations!
+
+***This entire presentation was made in RMarkdown***
+
+![Steve Jobs blows your mind](blog_images/steve-jobs.jpg)
+
+
+## Markdown syntax examples
+
+\- bullet one
+
+\- bullet two, \*italic\*, \*\*bold\*\*, \`code\`
+
+\    - nested bullet
+
+- bullet one
+- bullet two, *italic*, **bold**, `code`
+    - nested bullet
+
+## More markdown syntax
+
+    ### Subheading
+
+    This is some text with [a link] (http://umassamherst-grid.github.io)
+
+### Subheading
+
+This is some text with [a link](http://umassamherst-grid.github.io)
+
+## RMarkdown
+
+- Make a code chunk like this (there's a keyboard shortcut in RStudio):
+
+        \```{r}
+        exp(complex(imaginary = 1) * pi)
+        ```
+
+```{r, echo = FALSE}
+exp(complex(imaginary = 1) * pi)
+```
+
+- Oh yeah, LaTeX works too: `$e^{i \pi} = -1$` $\rightarrow e^{i \pi} = -1$
+
+- Do inline code like this: 
+
+    I have 'r rpois(1, 20)' dollars
+
+    - I have `r rpois(1, 20)` dollars
+
+
+## Not just for R!
+
+
+    \```{r, engine='python'}
+    lst = ["lovely", "spam!"]
+    for elem in lst:
+      print elem
+    ```
+
+
+```{r, engine='python', echo = FALSE}
+lst = ["lovely", "spam!"]
+
+for elem in lst:
+  print elem
+```
+
+
+## You can include plots
+
+This is a ggplot
+
+```{r, echo = TRUE, eval = FALSE}
+
+data(mtcars)
+ggplot(mtcars, aes(x = disp, y = hp, size = cyl)) +
+  geom_point()
+
+```
+
+
+## You can include plots
+
+This is a ggplot
+
+```{r, echo = FALSE}
+
+data(mtcars)
+ggplot(mtcars, aes(x = disp, y = hp, size = cyl)) +
+  geom_point()
+
+```
+
+
+## And tables
+
+```{r, echo = TRUE, eval = FALSE}
+kable(mtcars)
+```
+
+
+## And tables
+
+```{r, echo = FALSE}
+kable(mtcars)
+```
+
+
+## Some more advanced capabilities
+
+```{r, echo = TRUE, eval = FALSE}
+library(rpvta)
+leafletBusLocs()
+```
+
+
+## Some more advanced capabilities
+
+```{r, echo = FALSE}
+library(rpvta)
+leafletBusLocs()
+```
+
+
+## Read more here:
+
+###rmarkdown.rstudio.com
+
